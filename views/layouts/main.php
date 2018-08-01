@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use mdm\admin\components\MenuHelper;
 
 AppAsset::register($this);
 ?>
@@ -29,7 +30,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<!-- <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="<?=Yii::$app->homeUrl;?>"><?=Yii::$app->name;?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +50,12 @@ AppAsset::register($this);
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
+<?php
+echo Nav::widget([
+    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id)
+]);
+?>
     <?= Alert::widget() ?>
     <?= $content ?>
 <!-- Footer -->
